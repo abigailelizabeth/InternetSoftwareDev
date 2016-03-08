@@ -1,0 +1,44 @@
+Need to import all of .py files
+ex:
+    import animals, init, views
+from init import app, animals
+    < importing the app from init
+
+Seperate modules:
+init.py
+    < defines the app
+    < no circular dependencies (ex. animals contains app, and view grabs app from animals rather than init
+views.py
+    < gets our url handlers
+animals.py
+    < runs the app
+models
+    < databases
+        < install database bridge:
+        < settings, project interpreter, install new package: flask-sqlAlachemy
+            < links sql alchemy and flask together
+
+in init:
+    create app
+    create database
+    db= flask_sqlamch..sqla(app)
+    in our settings:
+        sqlalchemy_database_uri = 'sqlite:///data.db'
+
+in our models.py (represents data)
+    from init import db and app
+    define our objects using python classes
+        < inherit from db.Model
+        < fields are called columns
+        < have an id (interger, primary_key, autoincrement)
+        < each class will produce a table
+
+in our views.py
+    < import the database: ex. models.Animal.query.all() will return all the data
+    < to add an animal to the database: animal = models.Animal()
+    < animal.name, animal. id... assign values
+    < db.session.add(animal)
+    < db.session.commit()
+    < models.Animal.querey.get(aid) : getting an animal by the aid
+    < models.Animal.querey.filter_by(name = query).first()):[last thing is how you want those things] query object allows to sort, group, filter
+    < sqlalmchemy echo = true
